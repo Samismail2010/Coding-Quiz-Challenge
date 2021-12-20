@@ -1,8 +1,8 @@
+/* homepage style */
 body {
     margin: 0 35px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
 header {
     flex-wrap: wrap;
     justify-content: space-between;
