@@ -1,0 +1,22 @@
+body {
+    margin: 0 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: flex;
+}
+section h1 {
+    text-align: center;
+}
+section button {
+    font-size: 30px;
+    color: white;
+    background-color: indigo;
+    border-radius: 10px;
+}
+section {
+    text-align: center;
+}
