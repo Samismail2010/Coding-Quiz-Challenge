@@ -1,30 +1,13 @@
-// header
-var scoreBoardEl = document.getElementById("score");
-var timerEl = document.getElementById("time");
-var startBtn = document.getElementById("startqz");
+var startButton = document.getElementById('start-btn')
+startButton.addEventListener('click', startQuiz)
+var questionEl = document.getElementById('question')
+var answerButtonsEl = document.getElementById('answer-buttons')
 
 
-var startEl = document.querySelector("#start");
 
-//start quiz
-startBtn.onclick =  startQuiz;
 
-var startQuiz
 
-// timer element
- var startTimer = function() {
-    var timeLimit = setInterval(function() {
-        if (quizTimer <= 0) {
-            clearInterval(timeLimit);
-            quizTimer = 0;
-        } else {
-            timerEl.textContent = "time:" + quizTimer;
-        }
-        quizTimer -= 1;
-    }, 1000);
-}
 
-//quiz question element
 var questions = [
     {
         question: "In 1989, which NBA player was voted league MVP?",
@@ -60,7 +43,28 @@ var questions = [
     },
 ];
 
-var score = 0;
-var qQuestion = 0;
 
-//questions and score function
+
+
+
+
+
+
+
+
+
+
+
+function startQuiz() {
+
+}
+
+
+function selectNextQuestion(){
+
+}
+
+
+function selectAnswer(){
+
+}
