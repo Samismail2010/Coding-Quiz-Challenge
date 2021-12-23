@@ -1,17 +1,31 @@
 // header
 var scoreBoardEl = document.getElementById("score");
 var timerEl = document.getElementById("time");
-var startBtn = document.getElementById("start");
+var startBtn = document.getElementById("startqz");
 
+
+var startEl = document.querySelector("#start");
+
+//start quiz
+startBtn.onclick =  startQuiz;
+
+var startQuiz
 
 // timer element
-var startTimer = function {
-    var timeLimit 
-
+ var startTimer = function() {
+    var timeLimit = setInterval(function() {
+        if (quizTimer <= 0) {
+            clearInterval(timeLimit);
+            quizTimer = 0;
+        } else {
+            timerEl.textContent = "time:" + quizTimer;
+        }
+        quizTimer -= 1;
+    }, 1000);
 }
 
 //quiz question element
-var question = [
+var questions = [
     {
         question: "In 1989, which NBA player was voted league MVP?",
         answers: [
@@ -49,8 +63,4 @@ var question = [
 var score = 0;
 var qQuestion = 0;
 
-
 //questions and score function
-function questionAndScore() {
-    if
-}
