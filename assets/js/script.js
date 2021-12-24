@@ -142,3 +142,14 @@ function checkAnswer(event) {
     questionIndex++;
     showQuestions();
 }
+
+function showHighScores() {
+    quizHomePage.style.display = "none";
+    quizQuestionsPage.style.display = "none";
+    finalScorePage.style.display = "none";
+    finalScoreIs.style.display = "none";
+    initials.style.display = "none" ;
+    saveButton.style.display = "none";
+    initialInput.style.display = "none" ;
+    highScorePage.style.display = "block";
+}
