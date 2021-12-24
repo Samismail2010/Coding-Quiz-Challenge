@@ -1,78 +1,80 @@
-var quizScoreboardElement = document.querySelector("#question-scoreboard");
-var quizTimerElement = document.querySelector("#question-time");
+var header = document.querySelector(".container");
+var viewHighScores = document.getElementById("viewHighScores");
 
-var questionTitleEl = document.querySelector("#title");
-var quizStartEl = document.querySelector("#qstart");
 
-var questionCount = 0;
-var quizTimer = 120;
-var timeLimit;
-var score = 0;
+var quizHomepage = document.getElementById("quizHomePage");
+var startButton = document.getElementById("startButton");
 
-//timer element
-var startTimer = function() {
-    var timeLimit = setInterval(function() {
-        if (quizTimer <= 0) {
-            clearInterval(timeLimit);
-            quizTimer = 0;
-        } else {
-            quizTimerEl.textContent = "Time: " + quizTimer;
-        }
-        quizTimer -= 1;
-    }, 1000);
+var timer = document.getElementById("timer");
+
+var quizQuestionPage = document.getElementById("quizQuestionPage");
+var quizQuestionHeader = document.getElementById("quizQuestionHeader");
+var choice1 = document.getElementById("one");
+var choice2 = document.getElementById("two");
+var choice3 = document.getElementById("three");
+var choice4 = document.getElementById("four");
+var correct = document.getElementById("correct");
+var answerResponse = document.getElementById("answerResponse");
+
+var questionIndex = 0;
+var quizQuestions = [
+    {
+    quizQuestionHeader : "Lebron James won his 1st championship in 2012, which team did he defeat?", 
+    one : "San Antonio Spurs",
+    two : "Golden State Warriors",
+    three : "Oklahoma City Thunders",
+    four : "Houston Rockets",
+    correct : "Oklahoma City Thunders",
+
+    },  {
+
+    quizQuestionHeader : "Kobe Bryant scored 60 points in the 3 quarters against which of these teams?",
+    one : "Sacramento Kings",
+    two : "Portland Trailblazers",
+    three : "Dallas Mavericks",
+    four : "Los Angeles Clippers",
+    correct : "Dallas Mavericks",
+
+    },  {
+        
+    quizQuestionHeader : "60 point triple-double has been done 1 time in the history of the NBA, which on these players did it?",
+    one : "Michael Jordan",
+    two : "Magic Johnson",
+    three : "James Harden",
+    four : "Lebron James",
+    correct : "James Harden",
+    },
+]
+
+function startQuiz(){
+    quizHomepage.style.display = "none";
+    header.style.display = "block";
+    quizQuestionPage.style.display = "block";
 }
-// start quiz element
-var startQuiz = function(event) {
-    startTimer();
-    quizStartEl.remove();
-    getQuestion(questionCount);
+
+function showQuestions() {
+    var q = quizQuestions[questionIndex];
+
+    quizQuestionHeader.innerText = q.quizQuestionHeader;
+    choice1.innerText = q.one;
+    choice1.setAttribute("data-answer", q.one);
+    choice2.innerText = q.two;
+    choice2.setAttribute("data-answer", q.two);
+    choice3.innerText = q.three;
+    choice3.setAttribute("data-answer", q.three);
+    choice4.innerText = q.four;
+    choice4.setAttribute("data-answer", q.four);
 }
-
-
-var questions = [
-    {
-        question: "In 1989, which NBA player was voted league MVP?",
-        answers: [
-            {text: "Michael Jordan"},
-            {text: "Charles Barkley"},
-            {text: "Magic Johnson", isCorrect: true},
-        ]
-    },
-    {
-        question: "60 point triple-double has been done 1 time in the history of the NBA, which on these players did it?",
-        answers: [
-            {text: "Lebron James"},
-            {text: "James Harden", isCorrect: true},
-            {text: "Wilt Chamberlein"},
-        ]
-    },
-    {
-        question: "Kobe Bryant scored 60 points in the 3 quarters against which of these teams?",
-        answers: [
-            {text: "Pheonix Suns"},
-            {text: "Charlotte Bobcats"},
-            {text: "Dallas Mavericks", isCorrect: true},
-        ]
-    },
-    {
-        question: "Lebron James won his 1st championship in 2012, which team did he defeat?",
-        answers: [
-            {text: "San Antonio Spurs"},
-            {text: "Oklahoma City Thunders", isCorrect: true},
-            {text: "Dallas Mavericks"},
-        ]
-    },
-];
-
-
-
-
-
-
-
-
-
-
-
-
-
+showQuestions();
+choice1.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice2.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice3.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice4.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
