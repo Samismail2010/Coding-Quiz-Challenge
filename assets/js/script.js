@@ -16,8 +16,14 @@ var choice4 = document.getElementById("four");
 var correct = document.getElementById("correct");
 var answerResponse = document.getElementById("answerResponse");
 
+
+var initials = document.getElementById("initials");
+var saveButton = document.getElementById("saveButton");
 var finalScorePage = document.getElementById("finalScorePage");
 var completed = document.getElementById("completed");
+var finalScoreIs = document.getElementById("finalScoreIs");
+var initialInput = document.getElementById("initialInput");
+
 
 var questionIndex = 0;
 var quizQuestions = [
@@ -53,18 +59,35 @@ function quizChallenge() {
     quizHomepage.style.display ="block";
     header.style.display = "block";
     quizQuestionPage.style.display = "none";
+    finalScorePage.style.display = "none";
+    highScorePage.style.display = "none";
 }
 
 
 var startScore = 0;
-timer.textContent ="time: " + startScore
+timer.textContent ="Time: " + startScore;
+
+
 
 
 function startQuiz(){
     quizHomepage.style.display = "none";
     header.style.display = "block";
     quizQuestionPage.style.display = "block";
+    finalScorePage.style.display = "none";
+    highScorePage.style.display = "none";
 }
+
+timeLeft = 75; 
+
+  timerInterval = setInterval(function() { 
+    timeLeft--;
+    timer.textContent = "Time: " + timeLeft;
+    if (timeLeft === 0 || quizQuestions.length === questionIndex) {
+      clearInterval(timerInterval);
+      showFinalScore();
+    }
+  }, 1000);
 
 function showQuestions() {
     var q = quizQuestions[questionIndex];
