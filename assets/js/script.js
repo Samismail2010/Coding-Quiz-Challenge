@@ -1,11 +1,32 @@
-var startButton = document.getElementById('start-btn')
-startButton.addEventListener('click', startQuiz)
-var questionEl = document.getElementById('question')
-var answerButtonsEl = document.getElementById('answer-buttons')
+var quizScoreboardElement = document.querySelector("#question-scoreboard");
+var quizTimerElement = document.querySelector("#question-time");
 
+var questionTitleEl = document.querySelector("#title");
+var quizStartEl = document.querySelector("#qstart");
 
+var questionCount = 0;
+var quizTimer = 120;
+var timeLimit;
+var score = 0;
 
-
+//timer element
+var startTimer = function() {
+    var timeLimit = setInterval(function() {
+        if (quizTimer <= 0) {
+            clearInterval(timeLimit);
+            quizTimer = 0;
+        } else {
+            quizTimerEl.textContent = "Time: " + quizTimer;
+        }
+        quizTimer -= 1;
+    }, 1000);
+}
+// start quiz element
+var startQuiz = function(event) {
+    startTimer();
+    quizStartEl.remove();
+    getQuestion(questionCount);
+}
 
 
 var questions = [
@@ -55,16 +76,3 @@ var questions = [
 
 
 
-function startQuiz() {
-
-}
-
-
-function selectNextQuestion(){
-
-}
-
-
-function selectAnswer(){
-
-}
