@@ -16,6 +16,9 @@ var choice4 = document.getElementById("four");
 var correct = document.getElementById("correct");
 var answerResponse = document.getElementById("answerResponse");
 
+var finalScorePage = document.getElementById("finalScorePage");
+var completed = document.getElementById("completed");
+
 var questionIndex = 0;
 var quizQuestions = [
     {
@@ -45,6 +48,17 @@ var quizQuestions = [
     correct : "James Harden",
     },
 ]
+
+function quizChallenge() {
+    quizHomepage.style.display ="block";
+    header.style.display = "block";
+    quizQuestionPage.style.display = "none";
+}
+
+
+var startScore = 0;
+timer.textContent ="time: " + startScore
+
 
 function startQuiz(){
     quizHomepage.style.display = "none";
@@ -78,3 +92,30 @@ choice3.addEventListener("click", function (event) {
 choice4.addEventListener("click", function (event) {
     checkAnswer(event);
 })
+
+function checkAnswer(event) {
+    event.preventDefault();
+
+    var answer = event.currentTarget.dataset.answer;
+    var correctAnswer = null;
+    if(quizQuestions[questionIndex].correct === answer) {
+        correctAnswer = answer;
+    }
+    if (answer === correctAnswer) {
+        answerResponse.textContent = "Awesome!";
+
+    } else {
+        answerResponse.textContent = "try again 😔";
+        timeLeft -= 10
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
+    }
+    if (quizQuestions.length === questionIndex+1) {
+        showScore();
+        timer.innerText = "Time: " + timeLeft;
+        return;
+    }
+    questionIndex++;
+    showQuestions();
+}

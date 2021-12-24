@@ -21,7 +21,10 @@ body {
     height: 1000px;
 }
 
+.container h2 {
+    text-align: left 20px;
 
+}
 .container {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     width: 700px;
@@ -49,4 +52,15 @@ body {
 }
 .command {
     display: flex;
+}
+li {
+    list-style-type: none;
+}
+li button {
+    background-color: mediumslateblue;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 5px;
 }
