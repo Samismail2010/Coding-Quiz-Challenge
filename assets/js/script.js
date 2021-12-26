@@ -23,7 +23,16 @@ var finalScorePage = document.getElementById("finalScorePage");
 var completed = document.getElementById("completed");
 var finalScoreIs = document.getElementById("finalScoreIs");
 var initialInput = document.getElementById("initialInput");
+var saveButton = document.getElementById("saveButton"); 
 
+var highScorePage = document.getElementById("highScorePage");
+var scoreInitials = document.getElementById("scoreIntials");
+var highScoreList = document.getElementById("highScoreList");
+
+var goBackButton = document.getElementById("goBackButton");
+var clearHighScore = document.getElementById("clearHighScore");
+
+var highScoreArray = [];
 
 var questionIndex = 0;
 var quizQuestions = [
@@ -135,12 +144,28 @@ function checkAnswer(event) {
         }
     }
     if (quizQuestions.length === questionIndex+1) {
-        showScore();
+        showFinalScore();
         timer.innerText = "Time: " + timeLeft;
         return;
     }
     questionIndex++;
     showQuestions();
+}
+
+function showFinalScore() {
+    quizHomePage.style.display = "none";
+    quizQuestionsPage.style.display = "none";
+    finalScorePage.style.display = "block";
+    finalScoreIs.style.display = "block";
+    initials.style.display = "block" ;
+    saveButton.style.display = "block";
+    initialInput.style.display = "block" ;
+    highScorePage.style.display = "none";
+
+    finalScoreIs.textContent = "Here is your final score" + timeLeft;
+    saveButton.textContent = "Save";
+    initials.textContent = "Please enter your initials: ";
+    clearInterval(timerInterval);
 }
 
 function showHighScores() {
@@ -152,4 +177,58 @@ function showHighScores() {
     saveButton.style.display = "none";
     initialInput.style.display = "none" ;
     highScorePage.style.display = "block";
+
+
+var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
+
+var savedInitials = document.getElementById("initialInput").value;
+
+var localStorageArray = { score: timeLeft, initials: savedInitials };
+highScoreArray.push(localStorageArray)
+localStorage.setItem("highScore", JSON.stringify(highScoreArray));
+
+var listItemElement = document.createElement("li");
+listItemElement.innerText = savedInitials + " : " + timeLeft;
+listItemElement.id = "listItemElement";
+document.getElementById("highScoreList").append(listItemElement);
+
 }
+
+function resetGame() {
+    questionIndex = 0;
+}
+
+startButton.addEventListener ("click", function(){
+    startQuiz()
+})
+
+saveButton.addEventListener("click", function(){
+    showHighScores();
+    header.style.display = "none";
+    quizQuestionPage.style.display = "none";
+    finalScorePage.style.display = "none";
+    highScorePage.style.display = "block";
+    clearInterval(timerInterval);
+})
+
+goBackButton.addEventListener("click", function(){
+    document.getElementById("initialInput").value = ("")
+    resetGame()
+    quizChallenge();
+})
+clearHighScore.addEventListener("click", function(){
+    localStorage.clear();
+    resetGame()
+    highScoreList.innerText = "";
+})
+viewHighScores .addEventListener("click", function(){
+    header.style.display = "none";
+    quizHomepage.style.display = "none";
+    quizQuestionPage.style.display = "none";
+    finalScorePage.style.display = "none";
+    highScorePage.style.display = "block";
+
+    showHighScores();
+})
+
+quizChallenge();
